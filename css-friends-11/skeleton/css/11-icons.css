@@ -1,1 +1,92 @@
 /* PHASE 11: Icons */
+a[class*="icon-"] {
+  background-image: url("../images/sprite.png");
+  display: inline-block;
+  overflow: hidden;
+  height: 0;
+  width: 25px;
+  padding-top: 25px;
+  background-size: cover;
+}
+
+.icon-comment {
+  background-position: 0px 0px;
+}
+
+.icon-reblog {
+  background-position: 0px -100px;
+}
+
+.icon-favorite {
+  background-position: 0px -50px;
+}
+
+.icon-comment:hover {
+  background-position: 0px -25px;
+}
+
+.icon-reblog:hover {
+  background-position: 0px -125px;
+}
+
+.icon-favorite:hover {
+  background-position: 0px -75px;
+}
+
+div[class*="icon-small-"] {
+    background-image: url("../images/sprite.png");
+    display: inline-block;
+    overflow: hidden;
+    height: 20px;
+    width: 20px;
+    /* padding-top: 20px; */
+    background-size: cover;
+  }
+  
+  .icon-comment {
+    background-position: 0px 0px;
+  }
+  
+  .icon-reblog {
+    background-position: 0px -100px;
+  }
+  
+  .icon-favorite {
+    background-position: 0px -50px;
+  }
+  
+  .icon-comment:hover {
+    background-position: 0px -25px;
+  }
+  
+  .icon-reblog:hover {
+    background-position: 0px -125px;
+  }
+  
+  .icon-favorite:hover {
+    background-position: 0px -75px;
+  }
+
+
+
+
+/* <li><a class="icon-small-wall" href="#">Wall</a></li>
+<li><a class="icon-small-about" href="#">About</a></li>
+<li><a class="icon-small-friends" href="#">Friends</a></li>
+<li><a class="icon-small-photo" href="#">Photos</a></li> */
+/* ## Icons
+- Dimensions of total sprite sheet: 25px 250px
+- Dimension of regular icons: 25px 25px
+- Dimension of small icons: 20px 20px
+- Coordinates of regular icons:
+  - Comment: 0px 0px
+  - Comment Hover: 0px -25px
+  - Favorite: 0px -50px
+  - Favorite Hover: 0px -75px
+  - Reblog: 0px -100px
+  - Reblog Hover: 0px -125px
+- Coordinates of small icons:
+  - Friends: 0px -150px
+  - About: 0px -175px
+  - Photos: 0px -200px
+  - Wall: 0px -225px */ */
