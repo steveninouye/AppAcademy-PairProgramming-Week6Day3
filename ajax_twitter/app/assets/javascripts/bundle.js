@@ -100,6 +100,17 @@ const APIUtil = {
       url: `http://localhost:3000/users/${id}/follow`,
       dataType: "JSON"
     });
+  },
+  searchUsers: (queryVal, successCallback) => {
+    return $.ajax({
+      method: "GET",
+      url: "http://localhost:3000/users/search/",
+      dataType: "JSON",
+      data: {
+        query: queryVal
+      },
+      complete: successCallback
+    });
   }
 };
 
@@ -171,19 +182,73 @@ module.exports = FollowToggle;
 /***/ (function(module, exports, __webpack_require__) {
 
 const FollowToggle = __webpack_require__(/*! ./follow_toggle.js */ "./frontend/follow_toggle.js");
+const UserSearch = __webpack_require__(/*! ./users_search.js */ "./frontend/users_search.js");
 
 $(() => {
   const $buttons = $("button.follow-toggle");
 
   $buttons.each((idx, button) => {
     const $button = $(button);
-    // const userId = $button.data("user-id");
-    // const followState = $button.data("initial-follow-state");
-
-    // new FollowToggle(userId, followState, $button);
     new FollowToggle($button);
   });
+
+  const $userSearch = $("nav.users-search");
+  new UserSearch($userSearch);
 });
+
+
+/***/ }),
+
+/***/ "./frontend/users_search.js":
+/*!**********************************!*\
+  !*** ./frontend/users_search.js ***!
+  \**********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+const APIUtil = __webpack_require__(/*! ./api_util.js */ "./frontend/api_util.js");
+
+class UserSearch {
+  constructor($el) {
+    this.el = $el;
+    this.text = $el.children("input[type=text]");
+    this.render();
+    this.setListeners();
+  }
+
+  render() {}
+
+  setListeners() {
+    this.el.on("keydown", "input[type=text]", () => {
+      this.handleInput();
+    });
+  }
+
+  handleInput() {
+    APIUtil.searchUsers(this.text.val(), e => {
+      //   debugger;
+      console.log(e);
+      console.log("this is running");
+      this.makeUserLi(e.responseJSON);
+    });
+  }
+
+  makeUserLi(users) {
+    const $ul = $(".users");
+    $ul.empty();
+    for (let i = 0; i < users.length; i += 1) {
+      const username = users[i].username;
+      const $li = $(
+        `<li><a href="http://localhost:3000/users/${
+          users[i].id
+        }">${username}</a></li>`
+      );
+      $ul.append($li);
+    }
+  }
+}
+
+module.exports = UserSearch;
 
 
 /***/ })
